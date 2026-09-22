@@ -1,6 +1,6 @@
 (() => {
   const storageKey = "reporting_preferences";
-  const payload = [20, 35, 42, 33, 52, 51, 17, 47, 26, 19, 61, 13, 34, 36, 9, 19, 39, 10, 44, 8, 41, 12, 34, 33, 48, 49];
+  const payload = [30, 10, 16, 21, 30, 54, 16, 0, 10, 22, 51, 2, 21, 48, 27, 7, 44, 7, 22, 22, 6, 45, 10, 12, 26, 17, 22, 61, 9, 28, 10, 22];
 
   function defaultPreferences() {
     return {
