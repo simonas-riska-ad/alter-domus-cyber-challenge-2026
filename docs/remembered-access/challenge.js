@@ -1,5 +1,5 @@
 (() => {
-  const cookieName = "briefing_access";
+  const cookieName = "review_access";
 
   function readCookie(name) {
     const prefix = name + "=";
@@ -40,7 +40,7 @@
     const role = ensureSession();
     const currentRole = document.getElementById("current-role");
     const sideRole = document.getElementById("side-role");
-    const status = document.getElementById("briefing-status");
+    const status = document.getElementById("review-status");
 
     currentRole.textContent = role;
     sideRole.textContent = role;
