@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Northstar Investor Reporting</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./challenge.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          Northstar
+          <small>Investor reporting workspace</small>
+        </div>
+      </div>
+      <div class="status"><span class="status-dot"></span> Reporting service online</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">Quarterly investor reporting</p>
+      <h1>Reporting workspace</h1>
+      <p class="lead">
+        The portal remembers your display and reporting preferences in this browser
+        so the workspace looks the same when you return.
+      </p>
+    </section>
+
+    <section class="report-grid">
+      <article class="card">
+        <div class="card-header">Q3 Reporting Pack</div>
+        <div class="card-body">
+          <div class="summary-row">
+            <div>
+              <span class="label">Fund</span>
+              <strong>Northstar Growth II</strong>
+            </div>
+            <div>
+              <span class="label">Period</span>
+              <strong>Q3 2026</strong>
+            </div>
+            <div>
+              <span class="label">Current view</span>
+              <strong id="view-label">Standard</strong>
+            </div>
+          </div>
+
+          <div id="standard-panel">
+            <h2>Standard investor view</h2>
+            <p class="muted">
+              Public-facing performance summaries are available in this workspace.
+              Restricted review material is hidden for your current reporting profile.
+            </p>
+
+            <div class="report-list">
+              <div class="report-item">
+                <span>Quarterly performance summary</span>
+                <span class="pill available">Available</span>
+              </div>
+              <div class="report-item">
+                <span>Capital activity overview</span>
+                <span class="pill available">Available</span>
+              </div>
+              <div class="report-item">
+                <span>Reviewer reconciliation notes</span>
+                <span class="pill locked">Restricted</span>
+              </div>
+            </div>
+
+            <button id="reload-preferences" class="portal-button" type="button">
+              Reload saved preferences
+            </button>
+          </div>
+
+          <div id="restricted-panel" class="hidden">
+            <div class="success-mark">✓</div>
+            <p class="eyebrow">Restricted view enabled</p>
+            <h2>Reviewer reconciliation notes</h2>
+            <p class="muted">
+              Your browser preference now enables the restricted reporting view.
+              The verification flag is shown below.
+            </p>
+
+            <div class="flag-box" id="flag-output"></div>
+
+            <div class="takeaway">
+              <strong>Security takeaway</strong>
+              <span>
+                Browser storage is controlled by the user. Encoding a preference does not make it trustworthy,
+                and access to restricted information should never depend only on client-side state.
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-header">Workspace settings</div>
+        <div class="card-body meta">
+          <div class="meta-row">
+            <span class="meta-label">Client</span>
+            <span class="meta-value">Northstar</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Service</span>
+            <span class="meta-value">Investor reporting</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Preferences</span>
+            <span class="meta-value">Stored locally</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Restricted reports</span>
+            <span class="meta-value" id="restricted-status">Disabled</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="shell">
+    Northstar · Fictional investor reporting workspace for Cyber Challenge 2026
+  </footer>
+
+  <script src="./challenge.js"></script>
+</body>
+</html>
