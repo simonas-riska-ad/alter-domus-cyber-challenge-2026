@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Northstar Reporting Preview</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./challenge.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          Northstar
+          <small>Investor reporting preview</small>
+        </div>
+      </div>
+      <div class="status"><span class="status-dot"></span> Production preview online</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">Quarterly reporting release</p>
+      <h1>Production preview</h1>
+      <p class="lead">
+        The latest investor reporting frontend has been deployed for final validation.
+        Only authorized reviewers should be able to open the reconciliation preview.
+      </p>
+    </section>
+
+    <section class="preview-grid">
+      <article class="card">
+        <div class="card-header">Release 4.18.2</div>
+        <div class="card-body">
+          <div class="release-row">
+            <div>
+              <span class="label">Client</span>
+              <strong>Northstar</strong>
+            </div>
+            <div>
+              <span class="label">Environment</span>
+              <strong>Production preview</strong>
+            </div>
+            <div>
+              <span class="label">Build</span>
+              <strong>4.18.2</strong>
+            </div>
+          </div>
+
+          <h2>Reviewer reconciliation preview</h2>
+          <p class="muted">
+            Enter the reviewer preview key to open the protected reconciliation view.
+          </p>
+
+          <div class="preview-entry">
+            <label for="preview-key">Reviewer preview key</label>
+            <div class="entry-row">
+              <input id="preview-key" type="text" autocomplete="off" placeholder="Enter preview key">
+              <button id="verify-key" class="portal-button" type="button">Verify</button>
+            </div>
+            <p id="feedback" class="feedback" aria-live="polite"></p>
+          </div>
+
+          <div id="success-panel" class="success-panel hidden">
+            <div class="success-mark">✓</div>
+            <p class="eyebrow">Preview unlocked</p>
+            <h2>Reconciliation view available</h2>
+            <p class="muted">
+              The verification flag is shown below. Submit it to the Cyber Challenge platform.
+            </p>
+            <div class="flag-box" id="flag-output"></div>
+
+            <div class="takeaway">
+              <strong>Security takeaway</strong>
+              <span>
+                Production source maps can expose original source code, comments and internal values.
+                Build artifacts should be reviewed before public deployment.
+              </span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-header">Deployment details</div>
+        <div class="card-body meta">
+          <div class="meta-row">
+            <span class="meta-label">Application</span>
+            <span class="meta-value">Investor Reporting</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Frontend</span>
+            <span class="meta-value">Optimized build</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Debug mode</span>
+            <span class="meta-value">Off</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Review status</span>
+            <span class="meta-value" id="preview-status">Locked</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="shell">
+    Northstar · Fictional investor reporting workspace for Cyber Challenge 2026
+  </footer>
+
+  <script src="./app.min.js"></script>
+</body>
+</html>
