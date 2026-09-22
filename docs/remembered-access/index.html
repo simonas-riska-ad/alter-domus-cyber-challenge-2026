@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Northstar Review Portal</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./challenge.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          Northstar
+          <small>Review portal</small>
+        </div>
+      </div>
+      <div class="status"><span class="status-dot"></span> Portal online</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">Stakeholder review workspace</p>
+      <h1>Final review materials</h1>
+      <p class="lead">
+        Your browser remembers your current access profile so you can return to the portal
+        without signing in again.
+      </p>
+    </section>
+
+    <section class="portal-grid">
+      <article class="card">
+        <div class="card-header">Restricted briefing</div>
+        <div class="card-body">
+          <div id="locked-state">
+            <div class="lock-icon" aria-hidden="true">↳</div>
+            <h2>Additional access required</h2>
+            <p class="muted">
+              This briefing is available to reviewers only. Your current browser profile
+              does not have sufficient access.
+            </p>
+
+            <div class="access-box">
+              <div>
+                <span class="access-label">Current profile</span>
+                <strong id="current-role">viewer</strong>
+              </div>
+              <div>
+                <span class="access-label">Required profile</span>
+                <strong>reviewer</strong>
+              </div>
+            </div>
+
+            <button id="refresh-access" class="portal-button" type="button">
+              Re-check access
+            </button>
+          </div>
+
+          <div id="unlocked-state" class="hidden">
+            <div class="success-mark">✓</div>
+            <p class="eyebrow">Access confirmed</p>
+            <h2>Reviewer briefing unlocked</h2>
+            <p class="muted">
+              Your verification flag is shown below. Submit it to the Cyber Challenge platform.
+            </p>
+            <div class="flag-box" id="flag-output"></div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-header">Session details</div>
+        <div class="card-body meta">
+          <div class="meta-row">
+            <span class="meta-label">Workspace</span>
+            <span class="meta-value">Northstar</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Authentication</span>
+            <span class="meta-value">Browser session</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Access profile</span>
+            <span class="meta-value" id="side-role">viewer</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Briefing status</span>
+            <span class="meta-value" id="briefing-status">Locked</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="shell">
+    Project Northstar · Review workspace
+  </footer>
+
+  <script src="./challenge.js"></script>
+</body>
+</html>
