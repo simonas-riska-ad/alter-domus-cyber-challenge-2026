@@ -1,5 +1,5 @@
 (() => {
-  const expectedReferenceHash = "a92ce522b8bfbe8a729c274638279a1f7f4765f7a52242387872a88112239078";
+  const expectedReferenceHash = "b13a5a29c574d9c8b7af8265db6cbf8904b98949c4191d465fb85097a4ee2340";
   const payload = [44,45,73,80,93,95,104,88,39,16,59,39,23,61,59,53,13,55,33,78,65,74,88,67,84];
 
   async function sha256(value) {
