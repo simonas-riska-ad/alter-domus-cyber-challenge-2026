@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Northstar Approval Workspace</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./challenge.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          Northstar
+          <small>Client onboarding portal</small>
+        </div>
+      </div>
+      <div class="status"><span class="status-dot"></span> Review service online</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">Client due diligence workflow</p>
+      <h1>Approval review</h1>
+      <p class="lead">
+        The onboarding team has submitted Northstar for final review.
+        The portal only shows information intended for your current view.
+      </p>
+    </section>
+
+    <section class="approval-grid">
+      <article class="card">
+        <div class="card-header">Review decision</div>
+        <div class="card-body">
+          <div class="decision-row">
+            <div>
+              <span class="label">Client</span>
+              <strong>Northstar</strong>
+            </div>
+            <div>
+              <span class="label">Workflow</span>
+              <strong>Onboarding review</strong>
+            </div>
+            <div>
+              <span class="label">Status</span>
+              <strong class="pending">Pending</strong>
+            </div>
+          </div>
+
+          <div class="review-copy">
+            <h2>Final approval pending</h2>
+            <p>
+              A reviewer has already prepared the internal approval reference,
+              but this view is not intended to display reviewer-only details.
+            </p>
+          </div>
+
+          <div class="approval-entry">
+            <label for="approval-code">Approval reference</label>
+            <div class="entry-row">
+              <input id="approval-code" type="text" autocomplete="off" placeholder="Enter approval reference">
+              <button id="verify-code" class="portal-button" type="button">Verify</button>
+            </div>
+            <p id="feedback" class="feedback" aria-live="polite"></p>
+          </div>
+
+          <div id="success-panel" class="success-panel hidden">
+            <div class="success-mark">✓</div>
+            <p class="eyebrow">Reference accepted</p>
+            <h2>Approval record recovered</h2>
+            <p class="muted">
+              The verification flag is shown below. Submit it to the Cyber Challenge platform.
+            </p>
+            <div class="flag-box" id="flag-output"></div>
+
+            <div class="takeaway">
+              <strong>Security takeaway</strong>
+              <span>
+                Hiding information with CSS or client-side UI logic does not protect it.
+                If sensitive data reaches the browser, users can inspect it.
+              </span>
+            </div>
+          </div>
+
+          <div class="reviewer-only" aria-hidden="true">
+            <span class="reviewer-label">Reviewer reference</span>
+            <span class="reviewer-value">DD-4817-NORTHSTAR</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="card-header">Case details</div>
+        <div class="card-body meta">
+          <div class="meta-row">
+            <span class="meta-label">Case</span>
+            <span class="meta-value">NS-2026-1042</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Stage</span>
+            <span class="meta-value">Final review</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Risk rating</span>
+            <span class="meta-value">Standard</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-label">Your view</span>
+            <span class="meta-value">Operations</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="shell">
+    Northstar · Fictional client onboarding workspace for Cyber Challenge 2026
+  </footer>
+
+  <script src="./challenge.js"></script>
+</body>
+</html>
