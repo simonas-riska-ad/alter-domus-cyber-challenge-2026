@@ -27,13 +27,15 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          from PIL import Image, ImageEnhance, ImageFilter
+          from PIL import Image, ImageEnhance, ImageFilter, ImageFile
           from pathlib import Path
+
+          ImageFile.LOAD_TRUNCATED_IMAGES = True
 
           path = Path("docs/files/photo-finish/Northstar_Investor_Event.jpg")
           img = Image.open(path).convert("RGB")
 
-          # Upscale the earlier aggressively compressed copy and restore perceived crispness.
+          # Repair the earlier truncated/compressed copy and improve perceived clarity.
           img = img.resize((1536, 1024), Image.Resampling.LANCZOS)
           img = ImageEnhance.Contrast(img).enhance(1.03)
           img = ImageEnhance.Sharpness(img).enhance(1.35)
