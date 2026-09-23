@@ -1,0 +1,83 @@
+name: Build What the File Remembers artifact
+
+on:
+  push:
+    paths:
+      - ".github/workflows/build-file-remembers.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate challenge artifact
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import random
+          import struct
+
+          out = Path("docs/files/file-remembers/Northstar_Reconciliation_Cache.bin")
+          out.parent.mkdir(parents=True, exist_ok=True)
+
+          rng = random.Random(20260923)
+
+          def noise(n):
+              return bytes(rng.randrange(0, 256) for _ in range(n))
+
+          records = [
+              b"NORTHSTAR RECONCILIATION CACHE",
+              b"component=recon-client",
+              b"version=4.7.12",
+              b"environment=production-preview",
+              b"fund=Northstar Growth II",
+              b"workflow=quarterly-reconciliation",
+              b"cache_format=v3",
+              b"status=clean-shutdown",
+              b"telemetry=disabled",
+              b"last_view=exceptions-summary",
+              b"review_mode=standard",
+              b"api_route=/v1/reconciliation/status",
+              b"diagnostic=renderer-ready",
+              b"session_hint=do-not-use-as-authentication",
+              b"temporary_debug_marker=ADCTF{binary_strings_leak_data}",
+              b"cleanup=completed",
+              b"cache_footer=NORTHSTAR-END",
+          ]
+
+          blob = bytearray(b"NSRCACHE\x00\x03\x00" + struct.pack("<I", 20260923))
+
+          for rec in records:
+              blob.extend(noise(rng.randint(220, 900)))
+              blob.extend(b"\x00\x00")
+              blob.extend(rec)
+              blob.extend(b"\x00\x00")
+              blob.extend(noise(rng.randint(80, 420)))
+
+          blob.extend(noise(8192))
+          out.write_bytes(blob)
+
+          print("Wrote", out, out.stat().st_size, "bytes")
+          PY
+
+      - name: Verify intended solve
+        shell: bash
+        run: |
+          strings -a docs/files/file-remembers/Northstar_Reconciliation_Cache.bin | grep -F "ADCTF{binary_strings_leak_data}"
+
+      - name: Remove one-off workflow and commit artifact
+        shell: bash
+        run: |
+          rm .github/workflows/build-file-remembers.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/files/file-remembers/Northstar_Reconciliation_Cache.bin .github/workflows/build-file-remembers.yml
+          git commit -m "Add What the File Remembers challenge artifact"
+          git push
