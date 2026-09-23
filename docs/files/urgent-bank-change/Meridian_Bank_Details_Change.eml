@@ -1,0 +1,81 @@
+Return-Path: <payments@meridian-capltal.example>
+Received: from outbound-mail.external-example.net
+ (outbound-mail.external-example.net [198.51.100.77]) by mx.example.test with
+ ESMTPS id 9F3A21C for <operations@administrator.example>; Wed, 23 Sep 2026
+ 08:17:44 +0000
+Authentication-Results: mx.example.test; spf=fail
+ smtp.mailfrom=meridian-capltal.example; dkim=none; dmarc=fail
+ header.from=meridiancapital.example
+From: Elena Ward <elena.ward@meridiancapital.example>
+Reply-To: Meridian Payments <payments@meridian-capltal.example>
+To: Operations Team <operations@administrator.example>
+Date: Wed, 23 Sep 2026 08:17:31 +0000
+Message-ID: <20260923081731.84521@outbound-mail.external-example.net>
+Subject: URGENT: Bank details update before =?utf-8?q?today=E2=80=99s?=
+ payment run
+X-Mailer: WebMail Gateway 4.2
+X-Priority: 1
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="===============6299506580056004161=="
+
+--===============6299506580056004161==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+Please update the settlement account for Meridian Infrastructure Fund before =
+today's payment run.
+
+The previous account should no longer be used. The new instructions are below:
+
+Beneficiary: Meridian Infrastructure Fund
+Bank: Continental Union Bank
+IBAN: GB00 TEST 1234 5678 9012 34
+Reference: Q3 distribution
+
+This is time-sensitive. Please confirm by replying to this email once the cha=
+nge has been completed.
+
+I am travelling and may not be reachable by phone.
+
+Regards,
+Elena Ward
+Finance Director
+Meridian Capital Partners
+
+---
+This message is part of a fictional Cyber Challenge scenario. All names, doma=
+ins and banking details are synthetic.
+
+--===============6299506580056004161==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+<html>
+  <body>
+    <p>Hello,</p>
+    <p>Please update the settlement account for <strong>Meridian Infrastructu=
+re Fund</strong> before today's payment run.</p>
+    <p>The previous account should no longer be used. The new instructions ar=
+e below:</p>
+    <p>
+      Beneficiary: Meridian Infrastructure Fund<br>
+      Bank: Continental Union Bank<br>
+      IBAN: GB00 TEST 1234 5678 9012 34<br>
+      Reference: Q3 distribution
+    </p>
+    <p><strong>This is time-sensitive.</strong> Please confirm by replying to=
+ this email once the change has been completed.</p>
+    <p>I am travelling and may not be reachable by phone.</p>
+    <p>Regards,<br>Elena Ward<br>Finance Director<br>Meridian Capital Partner=
+s</p>
+    <hr>
+    <p><small>This message is part of a fictional Cyber Challenge scenario. A=
+ll names, domains and banking details are synthetic.</small></p>
+  </body>
+</html>
+
+--===============6299506580056004161==--
