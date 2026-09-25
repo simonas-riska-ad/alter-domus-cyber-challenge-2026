@@ -1,0 +1,54 @@
+PROJECT CEDAR — HANDOVER NOTES
+Document classification: Synthetic training material
+Prepared for: Cyber Challenge 2026
+
+Project: Cedar
+Workstream: Client Onboarding
+Review period: September 2026
+
+GENERAL NOTES
+- Client onboarding checklist reviewed.
+- Ownership documentation received.
+- Tax documentation received.
+- Investor contact list validated.
+- Reporting preferences confirmed.
+- Internal review remains in progress.
+
+HANDOVER CHECKLIST
+[OK] Entity information
+[OK] Registered address
+[OK] Primary contacts
+[OK] Investor classification
+[OK] Reporting frequency
+[OK] Communication preferences
+[OK] Document naming convention
+[OK] Archive structure
+[OK] Reviewer assignment
+[OK] Final handover notes
+
+OPERATIONAL NOTES
+- Use the standard Project Cedar naming convention.
+- Store approved material in the designated project workspace.
+- Do not circulate draft review notes externally.
+- Remove temporary working files after completion.
+- Confirm the final reviewer before closing the onboarding case.
+
+REVIEW HISTORY
+2026-09-15 09:10 — Initial checklist created.
+2026-09-15 11:42 — Entity information reviewed.
+2026-09-16 08:57 — Investor records compared.
+2026-09-16 13:26 — Reporting preferences confirmed.
+2026-09-17 10:03 — Reviewer notes updated.
+2026-09-17 15:31 — Validation completed.
+2026-09-18 09:12 — Handover package prepared.
+
+INTERNAL WORKING NOTES
+- temporary reviewer note retained for validation
+- formatting check complete
+- temporary validation marker: ADCTF{always_read_the_details}
+- remove temporary notes before external distribution
+
+FINAL STATUS
+Project Cedar onboarding package is ready for reviewer sign-off.
+
+All names, projects, workflows and data in this file are fictional and created for the Alter Domus Cyber Challenge 2026.
