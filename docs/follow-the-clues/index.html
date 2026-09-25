@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Follow the Clues — OSINT Evidence</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; font-family: Arial, Helvetica, sans-serif;
+      background: #111318; color: #f5f5f5;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 32px 20px 48px; }
+    .eyebrow { color: #e74315; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+    h1 { margin: 8px 0 8px; font-size: 34px; }
+    .sub { color: #b8bec8; margin: 0 0 24px; line-height: 1.5; }
+    .panel {
+      background: #1a1e25; border: 1px solid #2c333d; border-radius: 14px;
+      overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,.25);
+    }
+    img { width: 100%; display: block; background: #0d0f12; }
+    .notes { padding: 20px 22px; }
+    .notes h2 { margin: 0 0 12px; font-size: 19px; }
+    .clues { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .clue { background: #12151a; border: 1px solid #303640; border-radius: 10px; padding: 14px; }
+    .clue span { display:block; color:#8f98a6; font-size:12px; text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+    .clue strong { font-size: 18px; }
+    .foot { color:#8f98a6; font-size:12px; margin-top:18px; line-height:1.5; }
+    @media (max-width:700px) { .clues { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Cyber Challenge 2026 · OSINT Evidence</div>
+  <h1>Follow the Clues</h1>
+  <p class="sub">
+    This page contains the public-location evidence supplied with the challenge.
+    You are not expected to recognize the location from memory.
+  </p>
+
+  <section class="panel">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/4/40/Tram_stop_sign_outside_Flinders_Street_station.jpg"
+      alt="Public transport location evidence"
+      referrerpolicy="no-referrer"
+    >
+    <div class="notes">
+      <h2>Recovered observations</h2>
+      <div class="clues">
+        <div class="clue"><span>Location name</span><strong>Flinders Street Station</strong></div>
+        <div class="clue"><span>Observed route</span><strong>70</strong></div>
+        <div class="clue"><span>Stop number</span><strong>4</strong></div>
+      </div>
+      <p class="foot">
+        Use these observations together. The task is to identify the cross street for this exact stop.
+        Public search engines and maps are allowed.
+      </p>
+    </div>
+  </section>
+</main>
+</body>
+</html>
