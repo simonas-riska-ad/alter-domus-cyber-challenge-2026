@@ -1,0 +1,47 @@
+2026-09-18T09:10:01.000Z INFO  [portal] Starting support diagnostic session
+2026-09-18T09:10:07.000Z INFO  [config] environment=production
+2026-09-18T09:10:16.000Z INFO  [config] region=eu-west
+2026-09-18T09:10:21.000Z INFO  [database] connection_pool=healthy
+2026-09-18T09:10:29.000Z INFO  [cache] cache_status=healthy
+2026-09-18T09:10:37.000Z DEBUG [http] request_id=REQ-18421 method=GET path=/onboarding/cedar
+2026-09-18T09:10:44.000Z INFO  [http] status=200 duration_ms=184
+2026-09-18T09:10:51.000Z DEBUG [review] case_id=CDR-2026-0919 reviewer_state=pending
+2026-09-18T09:10:58.000Z INFO  [review] reviewer_assignment=active
+2026-09-18T09:11:03.000Z DEBUG [session] session_refresh_requested=true
+2026-09-18T09:11:12.000Z INFO  [session] session_refresh_result=success
+2026-09-18T09:11:18.000Z DEBUG [documents] document_count=14
+2026-09-18T09:11:25.000Z INFO  [documents] document_index_status=ready
+2026-09-18T09:11:31.000Z DEBUG [notifications] pending_notifications=2
+2026-09-18T09:11:40.000Z INFO  [notifications] delivery_status=queued
+2026-09-18T09:11:46.000Z DEBUG [http] request_id=REQ-18422 method=GET path=/api/review/status
+2026-09-18T09:11:52.000Z INFO  [http] status=200 duration_ms=96
+2026-09-18T09:12:00.000Z DEBUG [review] validation_checks=8 passed=8
+2026-09-18T09:12:06.000Z INFO  [review] validation_result=complete
+2026-09-18T09:12:14.000Z DEBUG [audit] audit_event=review_opened actor=service-account
+2026-09-18T09:12:27.000Z INFO  [audit] audit_write=success
+2026-09-18T09:12:29.000Z DEBUG [review-auth] temporary_review_code=CedarReview-4821 expires_in_seconds=900
+2026-09-18T09:12:36.000Z DEBUG [export] export_format=pdf
+2026-09-18T09:12:43.000Z INFO  [export] export_status=prepared
+2026-09-18T09:12:50.000Z DEBUG [http] request_id=REQ-18423 method=POST path=/api/review/refresh
+2026-09-18T09:12:57.000Z INFO  [http] status=202 duration_ms=121
+2026-09-18T09:13:02.000Z DEBUG [session] session_cache=miss
+2026-09-18T09:13:10.000Z INFO  [session] session_cache=recreated
+2026-09-18T09:13:18.000Z DEBUG [review] reviewer_scope=cedar-onboarding
+2026-09-18T09:13:23.000Z INFO  [review] review_access_check=passed
+2026-09-18T09:13:30.000Z DEBUG [metrics] active_sessions=7
+2026-09-18T09:13:37.000Z INFO  [metrics] healthcheck=ok
+2026-09-18T09:13:46.000Z DEBUG [http] request_id=REQ-18424 method=GET path=/api/documents/list
+2026-09-18T09:13:52.000Z INFO  [http] status=200 duration_ms=143
+2026-09-18T09:14:00.000Z DEBUG [documents] latest_document=ownership_structure.pdf
+2026-09-18T09:14:06.000Z INFO  [documents] scan_status=clean
+2026-09-18T09:14:13.000Z DEBUG [review] workflow_step=final-review
+2026-09-18T09:14:19.000Z INFO  [review] workflow_state=pending
+2026-09-18T09:14:26.000Z DEBUG [session] session_rotation=scheduled
+2026-09-18T09:14:33.000Z INFO  [session] session_rotation=complete
+2026-09-18T09:14:42.000Z DEBUG [support] diagnostic_mode=true
+2026-09-18T09:14:48.000Z INFO  [support] diagnostic_collection=active
+
+----- SUPPORT NOTE -----
+This diagnostic output was generated for the fictional Project Cedar onboarding portal.
+The security team is reviewing whether any sensitive values were written to application logs.
+All names, systems, domains and values in this challenge are synthetic.
