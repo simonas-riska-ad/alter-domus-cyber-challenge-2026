@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beginner guide for the Alter Domus Cyber Challenge 2026: registration, CTF basics, online tools, PowerShell, AI usage and what to do when stuck.">
+  <title>Beginner Guide — Alter Domus Cyber Challenge 2026</title>
+  <style>
+    :root{
+      --bg:#0d1117;--panel:#151b23;--panel2:#10151c;--line:#2a323d;
+      --text:#f4f7fa;--muted:#a9b3bf;--orange:#e74315;--orange2:#ff6a3d;
+      --green:#4fd18b;--yellow:#f4c95d;--blue:#6eb6ff;--code:#0a0e13;
+      --radius:16px;--shadow:0 16px 40px rgba(0,0,0,.25)
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,#0d1117 0%,#10141a 100%);color:var(--text);
+      font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+    a{color:#8ac5ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(13,17,23,.94);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
+    .brand{font-weight:800;letter-spacing:.01em;white-space:nowrap}
+    .brand b{color:var(--orange)}
+    nav{display:flex;gap:8px;overflow:auto;scrollbar-width:none}
+    nav a{color:#d7dde5;border:1px solid var(--line);background:#121820;padding:7px 11px;border-radius:999px;
+      font-size:13px;white-space:nowrap;text-decoration:none}
+    nav a:hover{border-color:#586474;background:#18202a}
+    .wrap{max-width:1180px;margin:auto;padding:42px 22px 80px}
+    .hero{padding:34px;border:1px solid #3a2a25;border-radius:22px;
+      background:radial-gradient(circle at top right,rgba(231,67,21,.22),transparent 38%),
+      linear-gradient(135deg,#171b22,#11161d);box-shadow:var(--shadow)}
+    .eyebrow{color:var(--orange2);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+    h1{font-size:clamp(34px,5vw,60px);line-height:1.05;margin:8px 0 14px}
+    .lead{font-size:19px;color:#c3ccd6;max-width:850px;margin:0}
+    .hero-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+    .hero-card{background:rgba(5,8,12,.45);border:1px solid var(--line);border-radius:14px;padding:16px}
+    .hero-card strong{display:block;margin-bottom:4px}
+    .hero-card span{color:var(--muted);font-size:14px}
+    .hero-card.alert{border-color:#74442f;background:rgba(231,67,21,.08)}
+    section{margin-top:44px;scroll-margin-top:80px}
+    h2{font-size:28px;margin:0 0 8px}
+    h3{font-size:18px;margin:0 0 8px}
+    .section-intro{color:var(--muted);max-width:900px;margin:0 0 20px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .grid.three{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+    .card p:last-child{margin-bottom:0}
+    .num{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#2a1813;
+      color:#ff8c67;font-weight:800;margin-right:8px}
+    .callout{border-left:4px solid var(--orange);background:#1b1615;padding:16px 18px;border-radius:10px;margin:16px 0}
+    .callout.yellow{border-color:var(--yellow);background:#1b1912}
+    .callout.green{border-color:var(--green);background:#111c18}
+    .callout.blue{border-color:var(--blue);background:#101923}
+    .steps{counter-reset:s;list-style:none;padding:0;margin:0}
+    .steps li{counter-increment:s;position:relative;padding:0 0 18px 46px;color:#d8dee7}
+    .steps li:before{content:counter(s);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;
+      display:grid;place-items:center;background:#2a1813;color:#ff8c67;font-weight:800}
+    .steps li:not(:last-child):after{content:"";position:absolute;left:14px;top:32px;bottom:2px;width:1px;background:#303843}
+    code,kbd{font-family:"Cascadia Code","SFMono-Regular",Consolas,monospace}
+    code.inline{background:#0b0f14;border:1px solid #27303a;padding:2px 6px;border-radius:6px;color:#dce7f3}
+    pre{margin:10px 0 0;background:var(--code);border:1px solid #28313c;border-radius:10px;padding:14px;overflow:auto;
+      color:#dbe6f2;font-size:13px;line-height:1.55}
+    .cmd{position:relative}
+    .copy{position:absolute;right:9px;top:9px;border:1px solid #3b4652;background:#141a22;color:#cfd7df;
+      border-radius:7px;padding:5px 8px;font-size:12px;cursor:pointer}
+    .copy:hover{background:#202833}
+    .tool{display:flex;gap:14px;align-items:flex-start}
+    .tool-icon{width:42px;height:42px;border-radius:11px;background:#232c36;display:grid;place-items:center;
+      flex:0 0 auto;font-weight:900;color:#ff8059}
+    .tool p{color:var(--muted);margin:5px 0 9px}
+    .pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 7px;border:1px solid #3b4652;border-radius:999px;
+      color:#c7d0da;margin-right:5px}
+    .query{background:#10151c;border:1px dashed #3a4654;border-radius:10px;padding:11px 13px;margin-top:8px;color:#dce6f2}
+    table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{background:#11171e;color:#f4f6f8;font-size:13px}
+    td{color:#cbd3dd}
+    tr:last-child td{border-bottom:0}
+    .safe{color:#8ee0af}.warn{color:#f2d071}
+    .footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:#8995a4;font-size:13px}
+    @media(max-width:850px){
+      .hero-cards,.grid,.grid.three{grid-template-columns:1fr}
+      .topbar-inner{align-items:flex-start;flex-direction:column}
+      .wrap{padding-top:28px}
+      table{font-size:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><b>AD</b> Cyber Challenge 2026</div>
+      <nav aria-label="Guide sections">
+        <a href="#register">Register</a>
+        <a href="#approach">How to solve</a>
+        <a href="#stuck">When stuck</a>
+        <a href="#tools">Online tools</a>
+        <a href="#powershell">PowerShell</a>
+        <a href="#files">File cheat sheet</a>
+        <a href="#ai">AI usage</a>
+        <a href="#safety">Safety</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Beginner Guide</div>
+      <h1>You do not need to be a CTF player.</h1>
+      <p class="lead">
+        This page is a practical starting point for the Alter Domus Cyber Challenge 2026:
+        how to register, what to search for, useful browser tools, basic PowerShell commands,
+        how to use AI without skipping the learning, and what to try when you feel stuck.
+      </p>
+      <div class="hero-cards">
+        <div class="hero-card alert">
+          <strong>Register first — SSO is not enabled</strong>
+          <span>Create a local CTF account. The normal company SSO flow will not sign you in here.</span>
+        </div>
+        <div class="hero-card">
+          <strong>Google and research are allowed</strong>
+          <span>CTFs are not closed-book exams. Searching for concepts and documentation is part of the process.</span>
+        </div>
+        <div class="hero-card">
+          <strong>AI is allowed</strong>
+          <span>But if you paste the whole challenge and ask for the answer, you may accidentally skip most of the learning.</span>
+        </div>
+      </div>
+    </header>
+
+    <section id="register">
+      <h2>1. Register before you start</h2>
+      <p class="section-intro">This challenge environment uses its own local accounts.</p>
+      <div class="grid">
+        <div class="card">
+          <h3><span class="num">1</span>Create your account</h3>
+          <ol class="steps">
+            <li>Open the Cyber Challenge site and choose <strong>Register</strong>.</li>
+            <li>Create your username and local password. If the form asks for an email address, use your work email.</li>
+            <li>Sign in using the credentials you just created.</li>
+            <li>Keep those credentials for the duration of the event.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>SSO note</h3>
+          <div class="callout">
+            <strong>Single Sign-On is not enabled for this CTF.</strong><br>
+            If you try the usual corporate SSO route, it will not authenticate you into the challenge platform.
+            Use the local account created through the CTF registration page instead.
+          </div>
+          <p>You only need one account. Challenges can then be solved in any order unless a task explicitly says otherwise.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <h2>2. A simple way to approach every challenge</h2>
+      <p class="section-intro">When a challenge looks unfamiliar, do not start by trying random tools. Break the problem down.</p>
+      <div class="grid three">
+        <div class="card"><h3>Read the goal</h3><p>What exactly are you being asked to identify: an IP, a code, a city, a filename, a domain, or a full <code class="inline">ADCTF{...}</code> flag?</p></div>
+        <div class="card"><h3>Inspect what you have</h3><p>Look at the file extension, visible text, sheet names, timestamps, URLs, headers, image clues, protocols or other obvious structure.</p></div>
+        <div class="card"><h3>Search the concept</h3><p>Search for the thing you do not understand — not necessarily the answer. Example: <em>how to inspect EXIF metadata</em>.</p></div>
+        <div class="card"><h3>Try one small step</h3><p>Decode the string. Open the file. Compare the two columns. Filter the packets. View the source. Confirm whether your idea makes sense.</p></div>
+        <div class="card"><h3>Use a hint</h3><p>Hints exist for a reason. Spending a few points is better than being stuck for an hour and learning nothing.</p></div>
+        <div class="card"><h3>Then ask for help</h3><p>AI, documentation and search are allowed. Try to ask for the next step or an explanation before asking directly for the final answer.</p></div>
+      </div>
+    </section>
+
+    <section id="stuck">
+      <h2>3. What to do when you are stuck</h2>
+      <p class="section-intro">Work down this list. You usually do not need all of it.</p>
+      <div class="card">
+        <ol class="steps">
+          <li><strong>Read the challenge again.</strong> Pay attention to the exact requested output and flag format.</li>
+          <li><strong>Look at everything that is immediately visible.</strong> Filenames, extensions, timestamps, sheet tabs, URLs, HTTP fields, log levels, signs in images.</li>
+          <li><strong>Ask: what kind of data is this?</strong> Text? Image? Spreadsheet? Email? Packet capture? Binary? Encoded string?</li>
+          <li><strong>Search one specific question.</strong> “How do I view email headers?” is more useful than “how do I hack this challenge?”</li>
+          <li><strong>Try the first hint.</strong> Hint titles are intentionally vague; the paid text points you toward the concept without simply giving the answer.</li>
+          <li><strong>Use AI as a tutor.</strong> Show it what you tried and ask what you should inspect next.</li>
+          <li><strong>Walk away for five minutes.</strong> Returning with fresh eyes genuinely helps.</li>
+        </ol>
+      </div>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="card">
+          <h3>Useful searches</h3>
+          <div class="query">how to view page source in a browser</div>
+          <div class="query">how to inspect image metadata</div>
+          <div class="query">how to identify a file by magic bytes</div>
+          <div class="query">how to open and inspect a .eml file</div>
+          <div class="query">how to inspect a pcap without installing software</div>
+          <div class="query">how to follow a TCP stream in Wireshark</div>
+          <div class="query">how to show hidden worksheets in Excel</div>
+          <div class="query">how to decode Base64</div>
+        </div>
+        <div class="card">
+          <h3>Good OSINT searches</h3>
+          <p>Use the strongest visible clue first, then combine clues if the result is too broad.</p>
+          <div class="query">"exact station or street name"</div>
+          <div class="query">"venue name" route 70 stop 4</div>
+          <div class="query">"unusual phrase from sign" city</div>
+          <div class="query">site:wikipedia.org "distinctive name"</div>
+          <p style="color:var(--muted)">Quotation marks can force a search engine to look for an exact phrase.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <h2>4. Useful browser-based tools</h2>
+      <p class="section-intro">You can solve a lot without installing anything. These are helpers, not automatic answer generators.</p>
+
+      <div class="callout yellow">
+        <strong>Important:</strong> only use online file-analysis services with files created for this Cyber Challenge.
+        Never upload real Alter Domus documents, logs, emails, captures, credentials, client data or other company information
+        to a third-party website.
+      </div>
+
+      <div class="grid">
+        <div class="card tool">
+          <div class="tool-icon">C</div>
+          <div>
+            <h3>CyberChef</h3>
+            <p>A very useful “cyber Swiss Army knife” for transformations such as Base64, hex, URL encoding, hashing, compression and many other data formats.</p>
+            <span class="pill">Browser</span><span class="pill">Encoding</span><span class="pill">Data</span><br><br>
+            <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener">Open CyberChef ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">Hx</div>
+          <div>
+            <h3>HexEd.it</h3>
+            <p>Browser-based hex editor. Useful when a challenge asks you to inspect the first bytes of a file, identify a file signature, or repair a small binary value.</p>
+            <span class="pill">Browser</span><span class="pill">Hex</span><span class="pill">File analysis</span><br><br>
+            <a href="https://hexed.it/" target="_blank" rel="noopener">Open HexEd.it ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">P</div>
+          <div>
+            <h3>A-Packets</h3>
+            <p>Online PCAP viewer for network captures when Wireshark is not available on your machine.</p>
+            <div class="callout yellow" style="margin:8px 0 10px;padding:10px 12px">
+              Its free analysis can create a public result. Use it only with the synthetic PCAP files supplied in this event.
+            </div>
+            <span class="pill">Browser</span><span class="pill">PCAP</span><span class="pill">Network</span><br><br>
+            <a href="https://apackets.com/" target="_blank" rel="noopener">Open A-Packets ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">W</div>
+          <div>
+            <h3>Wireshark</h3>
+            <p>If it is already installed or approved on your device, Wireshark is the standard tool for inspecting packet captures and following network conversations.</p>
+            <span class="pill">Desktop</span><span class="pill">PCAP</span><span class="pill">Network</span><br><br>
+            <a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">Wireshark website ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">G</div>
+          <div>
+            <h3>Search engines & Maps</h3>
+            <p>For OSINT challenges, ordinary search is often the most important tool. Search exact names, signs, route numbers and distinctive phrases, then verify the result with another clue.</p>
+            <span class="pill">OSINT</span><span class="pill">Research</span><br><br>
+            <a href="https://www.google.com/" target="_blank" rel="noopener">Google ↗</a> &nbsp;·&nbsp;
+            <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">&lt;/&gt;</div>
+          <div>
+            <h3>Browser Developer Tools</h3>
+            <p>Useful for web challenges: inspect HTML, JavaScript, cookies, storage and network requests. In Edge/Chrome try <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>.</p>
+            <span class="pill">Built in</span><span class="pill">Web</span><br><br>
+            <span style="color:var(--muted)">You can also try <code class="inline">view-source:https://...</code> for page source.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="powershell">
+      <h2>5. PowerShell basics for Windows</h2>
+      <p class="section-intro">
+        You do not need to be a command-line user. PowerShell is already available on standard modern Windows systems and can be very useful for simple CTF tasks.
+      </p>
+
+      <div class="callout blue">
+        <strong>How to open it:</strong> click the Windows Start/Search box, type <strong>PowerShell</strong>, then open
+        <strong>Windows PowerShell</strong> (or open Windows Terminal and choose a PowerShell tab).
+        You normally do <strong>not</strong> need “Run as administrator” for these challenges.
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Move to your Downloads folder</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Set-Location "$HOME\Downloads"</pre></div>
+          <p>Short version:</p>
+          <div class="cmd"><button class="copy">Copy</button><pre>cd "$HOME\Downloads"</pre></div>
+        </div>
+
+        <div class="card">
+          <h3>List files</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Get-ChildItem</pre></div>
+          <p>Include hidden items:</p>
+          <div class="cmd"><button class="copy">Copy</button><pre>Get-ChildItem -Force</pre></div>
+        </div>
+
+        <div class="card">
+          <h3>Read a text file</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Get-Content .\notes.txt</pre></div>
+          <p>Search it for a word or pattern:</p>
+          <div class="cmd"><button class="copy">Copy</button><pre>Select-String -Path .\notes.txt -Pattern "review"</pre></div>
+        </div>
+
+        <div class="card">
+          <h3>Search several files</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Get-ChildItem -File | Select-String -Pattern "ADCTF"</pre></div>
+          <p style="color:var(--muted)">Useful in folders containing multiple text-based artifacts.</p>
+        </div>
+
+        <div class="card">
+          <h3>Decode Base64</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>$value = "QURDVEZ7ZXhhbXBsZX0="
+[Text.Encoding]::UTF8.GetString(
+  [Convert]::FromBase64String($value)
+)</pre></div>
+        </div>
+
+        <div class="card">
+          <h3>Look at a file in hexadecimal</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Format-Hex -Path .\evidence.bin | Select-Object -First 20</pre></div>
+          <p style="color:var(--muted)">The first few bytes can tell you what type of file something really is.</p>
+        </div>
+
+        <div class="card">
+          <h3>Extract a ZIP archive</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Expand-Archive .\evidence.zip -DestinationPath .\evidence</pre></div>
+        </div>
+
+        <div class="card">
+          <h3>Calculate a SHA-256 hash</h3>
+          <div class="cmd"><button class="copy">Copy</button><pre>Get-FileHash .\evidence.bin -Algorithm SHA256</pre></div>
+          <p style="color:var(--muted)">A hash is a fingerprint for a file. It is useful for checking whether two copies are identical.</p>
+        </div>
+      </div>
+
+      <div class="callout green">
+        <strong>PowerShell help is built in.</strong> If you see a command you do not understand, try
+        <code class="inline">Get-Help CommandName -Examples</code>. For example:
+        <code class="inline">Get-Help Select-String -Examples</code>.
+      </div>
+    </section>
+
+    <section id="files">
+      <h2>6. Quick file-type cheat sheet</h2>
+      <p class="section-intro">You do not have to memorize this. Use it to decide what to search for.</p>
+      <table>
+        <thead><tr><th>You received</th><th>First things to think about</th><th>Useful search terms</th></tr></thead>
+        <tbody>
+          <tr><td><strong>.txt / .log / .csv</strong></td><td>Open it. Search for unusual values, timestamps, errors, usernames, IPs and changes in behavior.</td><td><code>how to analyze authentication logs</code></td></tr>
+          <tr><td><strong>.jpg / .png</strong></td><td>Look at the picture itself, then consider metadata. For OSINT, search visible signs, names and landmarks.</td><td><code>how to inspect image metadata</code></td></tr>
+          <tr><td><strong>.xlsx</strong></td><td>Check every sheet, compare records, look for hidden sheets. Remember that modern Office files contain structured data internally.</td><td><code>how to unhide Excel worksheet</code></td></tr>
+          <tr><td><strong>.eml</strong></td><td>Inspect sender, Reply-To, Received and authentication headers as well as the message body.</td><td><code>how to read email headers</code></td></tr>
+          <tr><td><strong>.zip</strong></td><td>List and extract the contents. If it is protected, look for password clues before thinking about brute force.</td><td><code>how to inspect zip archive</code></td></tr>
+          <tr><td><strong>.pcap / .pcapng</strong></td><td>Look at protocols, endpoints, DNS requests and readable application traffic. Follow conversations when possible.</td><td><code>Wireshark follow TCP stream</code></td></tr>
+          <tr><td><strong>.bin / unknown file</strong></td><td>Do not trust the extension. Inspect the first bytes and search for the file signature (“magic bytes”).</td><td><code>file signature magic bytes</code></td></tr>
+          <tr><td><strong>Web page</strong></td><td>Look beyond what is rendered: source, scripts, cookies, local storage and network requests can all matter.</td><td><code>browser devtools local storage</code></td></tr>
+          <tr><td><strong>Unreadable-looking text</strong></td><td>Ask whether it is encoded rather than encrypted. Base64 and hex are common beginner examples.</td><td><code>identify text encoding</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ai">
+      <h2>7. Using AI during the challenge</h2>
+      <p class="section-intro">
+        AI tools are <strong>not prohibited</strong> in this event. They can be excellent learning partners — but they can also remove the challenge completely if you ask for the final answer immediately.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3 class="safe">Good ways to use AI</h3>
+          <div class="query">Explain Base64 to me and show me how I would recognize it, but do not solve my challenge.</div>
+          <div class="query">I have a PCAP file and I am a beginner. What should I inspect first?</div>
+          <div class="query">Here are five log lines. Explain what each field means and what patterns an analyst would look for.</div>
+          <div class="query">Give me one hint for what I should try next, but do not reveal the flag.</div>
+          <div class="query">Explain what this PowerShell command does line by line.</div>
+        </div>
+
+        <div class="card">
+          <h3 class="warn">Keep this in mind</h3>
+          <p>If you paste the full challenge, all artifacts and the exact question into an AI assistant and say <em>“solve this”</em>, it may find the answer very quickly.</p>
+          <p>That is allowed — but it can turn a 20-minute learning experience into a 20-second copy/paste exercise.</p>
+          <p><strong>A useful compromise:</strong> try the challenge yourself first, use a hint when needed, and use AI to explain concepts or suggest the next step.</p>
+        </div>
+      </div>
+
+      <div class="callout yellow">
+        <strong>Company-data rule still applies.</strong> Only share the synthetic challenge material provided for this event.
+        Do not paste real company emails, logs, credentials, client information, internal documents or other confidential data into external AI tools.
+      </div>
+    </section>
+
+    <section id="safety">
+      <h2>8. Stay inside the challenge</h2>
+      <p class="section-intro">This is a learning environment. The scope is intentionally narrow.</p>
+      <div class="grid">
+        <div class="card">
+          <h3 class="safe">OK</h3>
+          <p>Inspect the files, pages, domains and challenge systems explicitly supplied in a task.</p>
+          <p>Search the public web, read documentation, use the provided hints and analyze synthetic challenge data.</p>
+        </div>
+        <div class="card">
+          <h3 class="warn">Not OK</h3>
+          <p>Do not scan, probe, exploit or test real Alter Domus websites, endpoints, cloud resources, employee accounts or other company infrastructure.</p>
+          <p>Do not upload real company data to public analysis websites just because a challenge taught you how to use one.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card" style="text-align:center;padding:30px">
+        <h2 style="margin-bottom:8px">The goal is not to know everything.</h2>
+        <p style="color:var(--muted);max-width:760px;margin:0 auto">
+          The useful cybersecurity skill is knowing how to turn “I have no idea what this is” into
+          “I know what to inspect or search for next.” Try things, research unfamiliar concepts,
+          use the hints, and keep going.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      Alter Domus Cyber Challenge 2026 · Beginner Guide · Challenge materials are synthetic unless explicitly stated otherwise.
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const pre = btn.parentElement.querySelector('pre');
+        try {
+          await navigator.clipboard.writeText(pre.innerText);
+          const old = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = old, 1200);
+        } catch (_) {
+          btn.textContent = 'Select text';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
