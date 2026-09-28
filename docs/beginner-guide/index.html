@@ -191,7 +191,7 @@
           <div class="query">how to identify a file by magic bytes</div>
           <div class="query">how to open and inspect a .eml file</div>
           <div class="query">how to inspect a pcap without installing software</div>
-          <div class="query">how to follow a TCP stream in Wireshark</div>
+          <div class="query">how to inspect HTTP or TCP traffic in a PCAP</div>
           <div class="query">how to show hidden worksheets in Excel</div>
           <div class="query">how to decode Base64</div>
         </div>
@@ -241,23 +241,13 @@
         <div class="card tool">
           <div class="tool-icon">P</div>
           <div>
-            <h3>A-Packets</h3>
-            <p>Online PCAP viewer for network captures when Wireshark is not available on your machine.</p>
+            <h3>OpenPCAP Viewer</h3>
+            <p>Browser-based packet-capture viewer. Useful for opening the synthetic <code class="inline">.pcap</code> and <code class="inline">.pcapng</code> files used in the Network challenges without installing additional software.</p>
             <div class="callout yellow" style="margin:8px 0 10px;padding:10px 12px">
-              Its free analysis can create a public result. Use it only with the synthetic PCAP files supplied in this event.
+              Open only the synthetic capture files supplied in this event. Do not upload real company network captures to third-party websites.
             </div>
             <span class="pill">Browser</span><span class="pill">PCAP</span><span class="pill">Network</span><br><br>
-            <a href="https://apackets.com/" target="_blank" rel="noopener">Open A-Packets ↗</a>
-          </div>
-        </div>
-
-        <div class="card tool">
-          <div class="tool-icon">W</div>
-          <div>
-            <h3>Wireshark</h3>
-            <p>If it is already installed or approved on your device, Wireshark is the standard tool for inspecting packet captures and following network conversations.</p>
-            <span class="pill">Desktop</span><span class="pill">PCAP</span><span class="pill">Network</span><br><br>
-            <a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">Wireshark website ↗</a>
+            <a href="https://www.openpcap.com/viewer/" target="_blank" rel="noopener">Open OpenPCAP Viewer ↗</a>
           </div>
         </div>
 
@@ -368,7 +358,7 @@
           <tr><td><strong>.xlsx</strong></td><td>Check every sheet, compare records, look for hidden sheets. Remember that modern Office files contain structured data internally.</td><td><code>how to unhide Excel worksheet</code></td></tr>
           <tr><td><strong>.eml</strong></td><td>Inspect sender, Reply-To, Received and authentication headers as well as the message body.</td><td><code>how to read email headers</code></td></tr>
           <tr><td><strong>.zip</strong></td><td>List and extract the contents. If it is protected, look for password clues before thinking about brute force.</td><td><code>how to inspect zip archive</code></td></tr>
-          <tr><td><strong>.pcap / .pcapng</strong></td><td>Look at protocols, endpoints, DNS requests and readable application traffic. Follow conversations when possible.</td><td><code>Wireshark follow TCP stream</code></td></tr>
+          <tr><td><strong>.pcap / .pcapng</strong></td><td>Open the capture in OpenPCAP Viewer. Look at protocols, endpoints, DNS requests and readable application traffic, then inspect interesting conversations or requests.</td><td><code>how to analyze a PCAP file</code></td></tr>
           <tr><td><strong>.bin / unknown file</strong></td><td>Do not trust the extension. Inspect the first bytes and search for the file signature (“magic bytes”).</td><td><code>file signature magic bytes</code></td></tr>
           <tr><td><strong>Web page</strong></td><td>Look beyond what is rendered: source, scripts, cookies, local storage and network requests can all matter.</td><td><code>browser devtools local storage</code></td></tr>
           <tr><td><strong>Unreadable-looking text</strong></td><td>Ask whether it is encoded rather than encrypted. Base64 and hex are common beginner examples.</td><td><code>identify text encoding</code></td></tr>
