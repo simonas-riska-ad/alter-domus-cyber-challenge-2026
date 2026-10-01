@@ -97,6 +97,7 @@
         <a href="#approach">How to solve</a>
         <a href="#stuck">When stuck</a>
         <a href="#tools">Online tools</a>
+        <a href="#file-tricks">File tricks</a>
         <a href="#powershell">PowerShell</a>
         <a href="#files">File cheat sheet</a>
         <a href="#ai">AI usage</a>
@@ -239,6 +240,26 @@
         </div>
 
         <div class="card tool">
+          <div class="tool-icon">FT</div>
+          <div>
+            <h3>Filestash — Identify File Type</h3>
+            <p>Useful when a filename or extension may be misleading. It can help identify what a challenge file actually is based on its contents rather than only its name.</p>
+            <span class="pill">Browser</span><span class="pill">File type</span><span class="pill">Beginner friendly</span><br><br>
+            <a href="https://filestash.app/tools/identify-filetype.html" target="_blank" rel="noopener">Open File Type Identifier ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
+          <div class="tool-icon">S</div>
+          <div>
+            <h3>dCode — Strings Extractor</h3>
+            <p>Binary files can still contain readable text. A strings extractor pulls out printable fragments that may reveal filenames, messages, URLs, debug values or other useful clues.</p>
+            <span class="pill">Browser</span><span class="pill">Strings</span><span class="pill">Binary analysis</span><br><br>
+            <a href="https://www.dcode.fr/strings-extractor" target="_blank" rel="noopener">Open Strings Extractor ↗</a>
+          </div>
+        </div>
+
+        <div class="card tool">
           <div class="tool-icon">P</div>
           <div>
             <h3>OpenPCAP Viewer</h3>
@@ -274,8 +295,77 @@
       </div>
     </section>
 
+    <section id="file-tricks">
+      <h2>5. File tricks worth knowing</h2>
+      <p class="section-intro">
+        These ideas come up often in beginner CTFs. You do not need to memorize them — just remember that they exist so you know what to search for.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Show real file extensions in Windows</h3>
+          <p>Windows may hide extensions such as <code class="inline">.zip</code>, <code class="inline">.jpg</code> or <code class="inline">.xlsx</code>. In File Explorer use:</p>
+          <div class="query"><strong>View → Show → File name extensions</strong></div>
+          <p>Once extensions are visible, you can rename a file normally with <kbd>F2</kbd> or <strong>Right-click → Rename</strong>.</p>
+          <div class="callout yellow" style="margin-bottom:0">
+            <strong>Renaming does not convert a file.</strong> It is useful only when you have already discovered that the file's real format is different from its current extension.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Do not blindly trust the filename</h3>
+          <p>A file called <code class="inline">report.pdf</code> is not necessarily a PDF. File formats usually have recognizable structures or starting bytes, often called <strong>file signatures</strong> or <strong>magic bytes</strong>.</p>
+          <p>Try the Filestash file-type identifier or inspect the beginning of the file with HexEd.it / <code class="inline">Format-Hex</code>.</p>
+        </div>
+
+        <div class="card">
+          <h3>Readable strings can hide inside binary files</h3>
+          <p>An application cache, executable or unknown <code class="inline">.bin</code> file may look unreadable when opened normally but still contain printable text.</p>
+          <p>Try a strings extractor and look for unusual URLs, filenames, usernames, error messages, configuration values or other human-readable fragments.</p>
+        </div>
+
+        <div class="card">
+          <h3>Office files can be archives</h3>
+          <p>Modern Office formats such as <code class="inline">.xlsx</code>, <code class="inline">.docx</code> and <code class="inline">.pptx</code> are ZIP-based packages containing XML and other files.</p>
+          <p>For a challenge artifact, make a copy first, then you can try changing the copy's extension to <code class="inline">.zip</code> or opening it with an archive tool to inspect its internal structure.</p>
+          <div class="callout blue" style="margin-bottom:0">
+            A spreadsheet can therefore contain more than the cells you immediately see: worksheets, relationships, properties, comments and other internal data may all exist inside the package.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Hexadecimal is another way to represent bytes</h3>
+          <p>Hex uses the characters <code class="inline">0-9</code> and <code class="inline">A-F</code>. One byte is commonly shown as two hex characters, from <code class="inline">00</code> to <code class="inline">FF</code>.</p>
+          <p>Sometimes hex represents readable text. For example:</p>
+          <div class="query"><code>41 44 43 54 46</code> → <code>ADCTF</code></div>
+          <p>CyberChef can convert between hexadecimal and text quickly.</p>
+        </div>
+
+        <div class="card">
+          <h3>DNS names can carry data</h3>
+          <p>DNS queries are normally used to resolve names, but the labels before a domain can also contain arbitrary text.</p>
+          <div class="query"><code>123.example.test</code><br><code>456.example.test</code></div>
+          <p>If many unusual queries share the same parent domain, the changing left-hand parts may form chunks that can be combined in timestamp order. Attackers can abuse this idea to move data through DNS.</p>
+          <p style="color:var(--muted)">Not every unusual subdomain is malicious — look for patterns and context.</p>
+        </div>
+
+        <div class="card">
+          <h3>Email: From and Reply-To are not the same thing</h3>
+          <p>The visible <strong>From</strong> address tells you who the message claims to be from. A separate <strong>Reply-To</strong> header can tell your mail client to send replies somewhere else.</p>
+          <p>A different Reply-To can be legitimate, but an unexpected mismatch is worth investigating — especially in requests involving payments, credentials or urgent changes.</p>
+          <p>When inspecting an <code class="inline">.eml</code> file, also look at <strong>Received</strong> headers and authentication results such as SPF, DKIM and DMARC.</p>
+        </div>
+
+        <div class="card">
+          <h3>Keep the original evidence</h3>
+          <p>Before renaming, repairing or modifying a challenge file, make a copy. That way you can always return to the original if your experiment does not work.</p>
+          <div class="cmd"><button class="copy">Copy</button><pre>Copy-Item .\evidence.bin .\evidence-working-copy.bin</pre></div>
+        </div>
+      </div>
+    </section>
+
     <section id="powershell">
-      <h2>5. PowerShell basics for Windows</h2>
+      <h2>6. PowerShell basics for Windows</h2>
       <p class="section-intro">
         You do not need to be a command-line user. PowerShell is already available on standard modern Windows systems and can be very useful for simple CTF tasks.
       </p>
@@ -348,18 +438,18 @@
     </section>
 
     <section id="files">
-      <h2>6. Quick file-type cheat sheet</h2>
+      <h2>7. Quick file-type cheat sheet</h2>
       <p class="section-intro">You do not have to memorize this. Use it to decide what to search for.</p>
       <table>
         <thead><tr><th>You received</th><th>First things to think about</th><th>Useful search terms</th></tr></thead>
         <tbody>
           <tr><td><strong>.txt / .log / .csv</strong></td><td>Open it. Search for unusual values, timestamps, errors, usernames, IPs and changes in behavior.</td><td><code>how to analyze authentication logs</code></td></tr>
           <tr><td><strong>.jpg / .png</strong></td><td>Look at the picture itself, then consider metadata. For OSINT, search visible signs, names and landmarks.</td><td><code>how to inspect image metadata</code></td></tr>
-          <tr><td><strong>.xlsx</strong></td><td>Check every sheet, compare records, look for hidden sheets. Remember that modern Office files contain structured data internally.</td><td><code>how to unhide Excel worksheet</code></td></tr>
-          <tr><td><strong>.eml</strong></td><td>Inspect sender, Reply-To, Received and authentication headers as well as the message body.</td><td><code>how to read email headers</code></td></tr>
+          <tr><td><strong>.xlsx</strong></td><td>Check every sheet, compare records and look for hidden sheets. Remember that an XLSX file is also a ZIP-based Office package that can be inspected internally.</td><td><code>how to inspect xlsx as zip</code></td></tr>
+          <tr><td><strong>.eml</strong></td><td>Inspect From and Reply-To separately, then check Received and authentication headers as well as the message body.</td><td><code>how to read email Reply-To header</code></td></tr>
           <tr><td><strong>.zip</strong></td><td>List and extract the contents. If it is protected, look for password clues before thinking about brute force.</td><td><code>how to inspect zip archive</code></td></tr>
-          <tr><td><strong>.pcap / .pcapng</strong></td><td>Open the capture in OpenPCAP Viewer. Look at protocols, endpoints, DNS requests and readable application traffic, then inspect interesting conversations or requests.</td><td><code>how to analyze a PCAP file</code></td></tr>
-          <tr><td><strong>.bin / unknown file</strong></td><td>Do not trust the extension. Inspect the first bytes and search for the file signature (“magic bytes”).</td><td><code>file signature magic bytes</code></td></tr>
+          <tr><td><strong>.pcap / .pcapng</strong></td><td>Open the capture in OpenPCAP Viewer. Look at protocols, endpoints, DNS requests and readable application traffic. Repeated unusual DNS labels can sometimes represent chunks of carried data.</td><td><code>how to analyze DNS queries in a PCAP</code></td></tr>
+          <tr><td><strong>.bin / unknown file</strong></td><td>Do not trust the extension. Identify the real file type, inspect the first bytes, and try extracting printable strings.</td><td><code>file signature magic bytes strings</code></td></tr>
           <tr><td><strong>Web page</strong></td><td>Look beyond what is rendered: source, scripts, cookies, local storage and network requests can all matter.</td><td><code>browser devtools local storage</code></td></tr>
           <tr><td><strong>Unreadable-looking text</strong></td><td>Ask whether it is encoded rather than encrypted. Base64 and hex are common beginner examples.</td><td><code>identify text encoding</code></td></tr>
         </tbody>
@@ -367,7 +457,7 @@
     </section>
 
     <section id="ai">
-      <h2>7. Using AI during the challenge</h2>
+      <h2>8. Using AI during the challenge</h2>
       <p class="section-intro">
         AI tools are <strong>not prohibited</strong> in this event. They can be excellent learning partners — but they can also remove the challenge completely if you ask for the final answer immediately.
       </p>
@@ -397,7 +487,7 @@
     </section>
 
     <section id="safety">
-      <h2>8. Stay inside the challenge</h2>
+      <h2>9. Stay inside the challenge</h2>
       <p class="section-intro">This is a learning environment. The scope is intentionally narrow.</p>
       <div class="grid">
         <div class="card">
